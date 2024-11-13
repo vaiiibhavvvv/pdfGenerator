@@ -1,46 +1,51 @@
-####PDF Generation API using Java Template Engine
+# PDF Generator API
 
-This is a Spring Boot application that provides a REST API to generate a PDF document using the provided data. The PDF is stored locally and can be re-downloaded without regeneration if the same data is provided.
+A Spring Boot application that provides a REST API to generate PDF documents using Java template engines like Thymeleaf or iText. The generated PDF is stored locally and can be redownloaded for repeated requests with the same data.
 
-####Features
-Generate PDF: Accepts data via a POST request and generates a PDF using Thymeleaf or iText.
-Download PDF: Ability to download the generated PDF.
-Store PDF: The PDF is stored on local storage and can be re-downloaded for repeated requests with the same data.
-API Documentation
-1. Generate PDF
-Endpoint: POST /generate-pdf
+## Features
+- **Generate PDF**: Accepts data via a POST request and generates a PDF using iText.
+- **Download PDF**: Allows downloading the generated PDF.
+- **Store PDF**: PDFs are stored on local storage for future access without regeneration.
 
-####Request Body:
+## API Documentation
 
-json
-Copy code
+### 1. Generate PDF
+**Endpoint**: `POST /generate-pdf`
+
+#### Request Body:
+```json
 {
-  "seller": "XYZ Pvt. Ltd.",
-  "sellerGstin": "29AABBCCDD121ZD",
+  "seller": "ABC Pvt. Ltd.",
+  "sellerGstin": "ABCDE12345",
   "sellerAddress": "New Delhi, India",
-  "buyer": "Vedant Computers",
-  "buyerGstin": "29AABBCCDD131ZD",
-  "buyerAddress": "New Delhi, India",
+  "buyer": "Vaibhav",
+  "buyerGstin": "QWERTY54321",
+  "buyerAddress": "Bangalore, India",
   "items": [
     {
-     "name": "Product 1",
+      "name": "Product 1",
       "quantity": "12 Nos",
       "rate": 123.00,
       "amount": 1476.00
     }
   ]
 }
-Response:
+```
 
-Returns a status indicating the PDF generation was successful and provides a download link.
-2. Download PDF
-Endpoint: GET /download-pdf/{filename}
+#### Response:
+Returns a status indicating whether the PDF was generated successfully and provides a download link.
 
-Parameters: filename (Name of the file to download)
-Response:
+### 2. Download PDF
+**Endpoint**: `GET /download-pdf/{filename}`
 
-The generated PDF file is sent as a download.
-####Technology Stack
-Java 
-Spring Boot (Web,iText)
-Local File Storage for storing PDFs
+#### Parameters:
+- `filename`: The name of the file to download.
+
+#### Response:
+The generated PDF file will be sent as a download.
+
+## Technology Stack:
+- **Java**
+- **Spring Boot** (Web)
+- **iText (Template Engine for PDF generation)
+- **Local File Storage** for storing PDFs
